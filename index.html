@@ -41,6 +41,11 @@
             scroll-behavior: smooth;
         }
 
+        img, svg, video {
+            max-width: 100%;
+            height: auto;
+        }
+
         /* animated background blobs – moving fluid */
         .bg-blobs {
             position: fixed;
@@ -132,6 +137,19 @@
             display: flex;
             gap: 12px;
             list-style: none;
+        }
+        .nav-toggle {
+            display: none;
+            width: 46px;
+            height: 46px;
+            border: 1px solid rgba(255,255,255,0.8);
+            border-radius: 50%;
+            background: rgba(255,255,255,0.8);
+            color: var(--space-indigo);
+            font-size: 1.2rem;
+            cursor: pointer;
+            align-items: center;
+            justify-content: center;
         }
         .nav-links a {
             text-decoration: none;
@@ -262,6 +280,13 @@
             margin: 32px 0 16px;
             flex-wrap: wrap;
         }
+        .hero-actions-row {
+            display: flex;
+            gap: 24px;
+            margin-top: 24px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
 
         .icon-btn {
             display: inline-flex;
@@ -290,8 +315,9 @@
             perspective: 1200px;
         }
         .circle-img {
-            width: 360px;
-            height: 400px;
+            width: clamp(240px, 34vw, 360px);
+            height: auto;
+            aspect-ratio: 9 / 10;
             object-fit: cover;
             object-position: top center;
             border-radius: 50% 50% 50% 50% / 45% 45% 55% 55%;
@@ -551,10 +577,208 @@
         .footer { background: rgba(255,255,255,0.2); backdrop-filter: blur(6px); padding: 36px; text-align:center; }
 
         /* responsive */
-        @media (max-width: 900px) {
-            .hero-container { justify-content: center; text-align: center; }
-            .nav-links { display: none; }
+        @media (max-width: 1200px) {
+            .navbar {
+                margin: 16px 3%;
+                padding: 12px 20px;
+            }
+            .hero-container {
+                gap: 36px;
+            }
+            .about-glass,
+            .graphic-sidecard,
+            .contact-wrapper {
+                border-radius: 36px;
+                padding: 36px 28px;
+            }
+            .section-padding {
+                padding: 78px 0;
+            }
         }
+
+        @media (max-width: 900px) {
+            .navbar {
+                margin: 12px 3%;
+                padding: 10px 14px;
+                border-radius: 20px;
+                top: 10px;
+            }
+            .nav-logo {
+                width: 50px;
+                height: 50px;
+                font-size: 1.6rem;
+            }
+            .nav-toggle {
+                display: inline-flex;
+            }
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: calc(100% + 10px);
+                left: 0;
+                right: 0;
+                flex-direction: column;
+                gap: 6px;
+                background: rgba(255,255,255,0.88);
+                backdrop-filter: blur(16px);
+                border: 1px solid rgba(255,255,255,0.9);
+                border-radius: 20px;
+                box-shadow: 0 18px 38px -20px rgba(30, 25, 60, 0.35);
+                padding: 10px;
+                z-index: 200;
+            }
+            .nav-links.open {
+                display: flex;
+            }
+            .nav-links a {
+                display: block;
+                text-align: center;
+                width: 100%;
+                padding: 12px 16px;
+            }
+            .hero {
+                min-height: auto;
+                padding-top: 24px;
+            }
+            .hero-container {
+                justify-content: center;
+                text-align: center;
+                gap: 26px;
+            }
+            .hero-content {
+                flex-basis: 100%;
+            }
+            .hero-actions-row,
+            .social-icons {
+                justify-content: center;
+            }
+            .section-title {
+                font-size: 2rem;
+                text-align: center;
+            }
+            .section-subtitle {
+                text-align: center;
+            }
+            .journey-grid,
+            .education-grid,
+            .skills-grid {
+                gap: 20px;
+            }
+            .contact-wrapper {
+                padding: 32px 20px;
+            }
+            .contact-info-row {
+                gap: 14px;
+                align-items: center;
+            }
+            .graphic-sidecard {
+                margin-bottom: 36px;
+            }
+            .sidecard-title {
+                font-size: 1.2rem;
+                padding: 8px 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container,
+            .hero-container {
+                width: min(92%, 680px);
+            }
+            .section-padding {
+                padding: 64px 0;
+            }
+            .big-title {
+                font-size: clamp(2.4rem, 13vw, 3.6rem);
+            }
+            .hero-role {
+                font-size: 1.2rem;
+            }
+            .hero-desc {
+                font-size: 1rem;
+                padding: 14px 16px;
+                border-radius: 24px;
+            }
+            .about-glass {
+                font-size: 1.05rem;
+                line-height: 1.55;
+                border-radius: 28px;
+                padding: 28px 18px;
+            }
+            .skills-filters {
+                display: flex;
+                width: 100%;
+                max-width: 100%;
+                overflow-x: auto;
+                justify-content: flex-start;
+                scrollbar-width: none;
+            }
+            .skills-filters::-webkit-scrollbar {
+                display: none;
+            }
+            .skill-filter {
+                flex: 0 0 auto;
+                padding: 10px 18px;
+            }
+            .graphic-sidecard {
+                border-radius: 30px;
+                padding: 28px 18px;
+            }
+            .contact-details {
+                gap: 18px;
+                flex-wrap: wrap;
+            }
+            .footer {
+                padding: 24px 14px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .navbar {
+                margin: 8px 2.5%;
+            }
+            .tagline {
+                font-size: 0.8rem;
+                letter-spacing: 2px;
+            }
+            .hero-edu-badge {
+                font-size: 0.9rem;
+                padding: 9px 16px;
+            }
+            .icon-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 1.5rem;
+            }
+            .contact-form input,
+            .contact-form textarea {
+                padding: 12px 16px;
+                border-radius: 14px;
+            }
+            .contact-form .btn {
+                width: 100%;
+                max-width: 100%;
+            }
+            .contact-info-item {
+                width: 100%;
+                justify-content: center;
+            }
+            .journey-card,
+            .glass-card {
+                border-radius: 22px;
+            }
+        }
+
+        @media (min-width: 1600px) {
+            .container,
+            .hero-container {
+                max-width: 1460px;
+            }
+            .big-title {
+                font-size: clamp(4.2rem, 5vw, 6rem);
+            }
+        }
+
         .reveal {
             opacity: 0;
             transform: translateY(40px);
@@ -572,7 +796,10 @@
 
     <nav class="navbar" id="navbar">
         <div class="nav-logo">SK</div>
-        <ul class="nav-links">
+        <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navLinks" aria-label="Toggle navigation menu">
+            <i class="fas fa-bars"></i>
+        </button>
+        <ul class="nav-links" id="navLinks">
             <li><a href="#home" class="active">Home</a></li>
             <li><a href="#education">Education</a></li>
             <li><a href="#skills">Skills</a></li>
@@ -590,7 +817,7 @@
                 <div class="hero-desc">
                     <span>C, SQL, HTML, CSS, Core Java, Manual Testing</span> — building testing foundations, merging design sensitivity with analytical discipline.
                 </div>
-                <div class="hero-actions-row" style="display: flex; gap: 24px; margin-top: 24px;">
+                <div class="hero-actions-row">
                     
                     <div class="social-icons" style="display: flex; gap: 24px;">
                         <a href="#contact" class="icon-btn" title="Let's Connect">
@@ -783,6 +1010,28 @@
             // nav highlight
             const sections = document.querySelectorAll('section[id], header[id]');
             const navLinks = document.querySelectorAll('.nav-links a');
+            const navToggle = document.getElementById('navToggle');
+            const navList = document.getElementById('navLinks');
+
+            navToggle?.addEventListener('click', () => {
+                const isOpen = navList?.classList.toggle('open');
+                navToggle.setAttribute('aria-expanded', String(Boolean(isOpen)));
+            });
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    navList?.classList.remove('open');
+                    navToggle?.setAttribute('aria-expanded', 'false');
+                });
+            });
+
+            window.addEventListener('resize', () => {
+                if (window.innerWidth > 900) {
+                    navList?.classList.remove('open');
+                    navToggle?.setAttribute('aria-expanded', 'false');
+                }
+            });
+
             window.addEventListener('scroll', () => {
                 let current = '';
                 sections.forEach(section => {
